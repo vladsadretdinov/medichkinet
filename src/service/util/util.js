@@ -1,8 +1,8 @@
-import murmur from 'murmurhash-js';
+import murmur from "murmurhash-js";
 const localSeed = Date.now();
 
 export function* letterGenerator() {
-  let letter = 'a';
+  let letter = "a";
   while (true) {
     yield letter;
     letter = String.fromCharCode(letter.charCodeAt() + 1);
@@ -17,12 +17,12 @@ export function* idGenerator() {
   }
 }
 
-export const getLetterFromId = id => {
+export const getLetterFromId = (id) => {
   const base = 97;
   return String.fromCharCode(base + id);
 };
 
-export const randomizeArray = arr => {
+export const randomizeArray = (arr) => {
   // Fisher-Yates algorithm
   const randomArray = [];
   for (let i = 0; i <= arr.length - 1; i++) {
@@ -41,4 +41,4 @@ export const getStringHash = (str, seed) => {
     seed = localSeed;
   }
   return murmur.murmur3(str, seed);
-}
+};

@@ -10,7 +10,7 @@ const buttonStyles = new Map(
   ]
 )
 
-const Button = ({id, onChange, type, value, disabled, hidden, onClick}) => {
+const Button = ({id, onChange, type, value, disabled, hidden, onClick, name}) => {
   const buttonRef = useRef(null);
   const baseStyle = buttonStyles.has(type) ? buttonStyles.get(type) : classes.Button;
   const classList = [baseStyle];
@@ -29,17 +29,18 @@ const Button = ({id, onChange, type, value, disabled, hidden, onClick}) => {
   );
   return type === 'file' ? (
     <>
-      <input
-        type="file"
+      <button
+        // type="file"
         id={id}
         className={classes.hidden}
-        accept={'.json'}
-        onChange={onChange}
+        // accept={'.json'}
+        // onChange={onChange}
+        onClick={onClick}
         disabled={disabled}
-        ref={buttonRef}
+        // ref={buttonRef}
       />
       <AccessibleLabel className={styles} htmlFor={id}>
-        upload
+        {name}
       </AccessibleLabel>
     </>
   ) : (

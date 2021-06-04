@@ -11,6 +11,7 @@ import IconWrapper from '../components/core/UI/IconWrapper.react';
 import classes from './Landing.module.css';
 import Modal from '../components/core/UI/Modal.react';
 import Code from '../components/core/UI/Code.react';
+import Testy_Patokhimia from "./Testy_Patokhimia.json";
 
 const instructionsText = `[
   {
@@ -71,15 +72,25 @@ const Landing = () => {
       if (file.type === 'application/json') {
         const fileContents = await file.text();
         const fileData = JSON.parse(fileContents);
-        // Error handling should go here
+        // Error handling should go here Testy_Patokhimia
         setQuizData(randomizeArray(fileData));
       }
       setLoading(false);
     }
   };
+  const handleUpload2 = e => {
+    if (e === 'Testy_Patokhimia') {
+      setLoading(true);
+      const fileData = Testy_Patokhimia;
+      setQuizData(randomizeArray(fileData));
+    }
+    setLoading(false);
+  };
 
   const DragAndDropCard = useMemo(() => withDragAndDrop(Card, handleDrop), []);
-  const quizEndHandler = () => setQuizData(null);
+  const quizEndHandler = () => {
+    setQuizData(null);
+  }
   const quizRestartHandler = () =>
     setQuizData(currQuizData => randomizeArray(currQuizData));
 
@@ -136,32 +147,28 @@ const Landing = () => {
           <div className={classes.Landing}>
             <VerticalLayout center="horizontal" spaceBetween={1.25}>
               <Text variant="primary" bold type="title">
-                JSON Flashcards
+                Medichki.net
             </Text>
-              <Text type="body1">
+              {/* <Text type="body1">
                 Create flashcards quickly from a formatted .json file.
-            </Text>
+            </Text> */}
               <DragAndDropCard enabled={!isLoading} transparent>
                 {!isLoading ? (
                   <VerticalLayout center="middle">
-                    <IconWrapper iconSize={3} iconType="drag">
-                      <Text type="header2" align="center">
-                        Drag and drop your .json file here
-                    </Text>
-                    </IconWrapper>
-                    <Text type="body1">or</Text>
                     <Button
                       id="fileUpload"
                       type="file"
-                      value="Upload"
-                      onChange={handleUpload}
+                      value="upload"
+                      // onChange={handleUpload}
+                       onClick={() => handleUpload2("Testy_Patokhimia")}
+                      name="Testy_Patokhimia"
                     ></Button>
                   </VerticalLayout>
                 ) : (
                     <Spinner text="Loading your cards..." />
                   )}
               </DragAndDropCard>
-              <IconWrapper iconSize={1.5} iconType="help">
+              {/* <IconWrapper iconSize={1.5} iconType="help">
                 <div className={classes.format_instructions}>
                   <Text type="body2" underline>
                     <Button
@@ -171,16 +178,16 @@ const Landing = () => {
                     />
                   </Text>
                 </div>
-              </IconWrapper>
+              </IconWrapper> */}
             </VerticalLayout>
             <div className={classes.Credits}>
-              <Text type="body3" align="center" underline>
+              {/* <Text type="body3" align="center" underline>
                 <Button
                   type="link"
                   value="credits"
                   onClick={handleShowCredits}
                 />
-              </Text>
+              </Text> */}
             </div>
           </div>
         </>
