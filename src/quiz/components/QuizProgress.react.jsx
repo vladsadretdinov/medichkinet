@@ -17,7 +17,7 @@ const QuizProgress = ({current, total}) => {
           trailColor: 'var(--color-primary)',
         })}
       />
-      <Text type="body1" align="center">{`Card ${current} of ${total}`}</Text>
+      <Text type="body1" align="center">{`Вопрос ${current} из ${total}`}</Text>
     </div>
   );
 };

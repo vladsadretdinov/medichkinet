@@ -10,6 +10,7 @@ const QuizEnd = ({
   returnHome,
   restartQuiz,
   restartQuizIncorrect,
+  restartQuizWithNewQuestions,
   hasIncorrectAnswers,
 }) => {
   return (
@@ -17,20 +18,21 @@ const QuizEnd = ({
       <VerticalLayout center="horizontal">
         <div className={classes.heading}>
           <Text type="header2" variant="primary" bold>
-            You're done!
+            Готово!
           </Text>
         </div>
         <div>
           <HorizontalLayout spaceBetween="1">
-            <Button type="card" value="retry quiz" onClick={restartQuiz} />
+            <Button type="card" value="Повторить тест с такими же вопросами" onClick={restartQuiz} />
             {hasIncorrectAnswers && (
               <Button
                 type="card"
-                value="retry incorrect questions only"
+                value="Повторить тест с неправильными ответами"
                 onClick={restartQuizIncorrect}
               />
             )}
-            <Button type="card" value="home" onClick={returnHome} />
+            <Button type="card" value="Начать тест с новыми вопросами" onClick={restartQuizWithNewQuestions} />
+            <Button type="card" value="Домой" onClick={returnHome} />
           </HorizontalLayout>
         </div>
       </VerticalLayout>

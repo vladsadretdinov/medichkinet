@@ -27,7 +27,7 @@ const Timer = ({stop}) => {
         </Text>
       </div>
       <Text type="body1" align="center">
-        Time elapsed
+        Затраченное время
       </Text>
     </>
   );

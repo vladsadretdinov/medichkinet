@@ -12,7 +12,7 @@ const QuizScore = ({current, total}) => {
         </Text>
       </div>
       <Text type="body1" align="center">
-        Current score
+        Текущий балл
       </Text>
     </>
   );

@@ -13,10 +13,11 @@ import ProgressRing from './components/QuizProgress.react';
 import QuizScore from './components/QuizScore.react';
 // import IconWrapper from '../components/core/UI/IconWrapper.react';
 import QuizEnd from './QuizEnd.react';
+import { randomizeArray } from '../service/util/util';
 
 const getTimerHash = () => `timer_${getStringHash('timer', Date.now())}`;
 
-const Quiz = ({data, setData, finishQuiz, restartQuiz}) => {
+const Quiz = ({data, fullData, setData, finishQuiz, restartQuiz}) => {
   const [timerKey, setTimerKey] = useState(getTimerHash());
   const [answer, setAnswer] = useState(null);
   const [quizEnd, setQuizEnd] = useState(false);
@@ -58,7 +59,7 @@ const Quiz = ({data, setData, finishQuiz, restartQuiz}) => {
     <div className={classes.Quiz}>
       <Header text="Medichki.net">
         <div className={classes.QuitButton}>
-          <Button type="link" value="quit" onClick={finishQuiz} />
+          <Button type="link" value="На главную" onClick={finishQuiz} />
         </div>
       </Header>
       <div className={classes.QuizPanel}>
@@ -66,9 +67,9 @@ const Quiz = ({data, setData, finishQuiz, restartQuiz}) => {
           <div className={classes.Sidebar_Layout}>
             <VerticalLayout center="horizontal" spaceBetween={1.5}>
               <Text type="header2" bold>
-                Stats
+                Статистика
               </Text>
-              <Timer key={timerKey} stop={answer || quizEnd ? true : false} />
+              <Timer key={timerKey} stop={quizEnd ? true : false} />
               <ProgressRing current={questionIndex + 1} total={data.length} />
               <QuizScore current={score} total={answered} />
             </VerticalLayout>
@@ -105,7 +106,7 @@ const Quiz = ({data, setData, finishQuiz, restartQuiz}) => {
                   {questionIndex + 1 !== data.length ? (
                     <Button
                       hidden={!answer ? true : false}
-                      value="Next"
+                      value="Следующий вопрос"
                       onClick={() => {
                         setQuestionIndex(i => i + 1);
                         setAnswer(null);
@@ -126,6 +127,10 @@ const Quiz = ({data, setData, finishQuiz, restartQuiz}) => {
           ) : (
             <QuizEnd
               returnHome={finishQuiz}
+              restartQuizWithNewQuestions={() => {
+                setData(randomizeArray(fullData).slice(0, 20));
+                quizRestartHandler();
+              }}
               restartQuiz={quizRestartHandler}
               restartQuizIncorrect={() => {
                 setData(incorrectAnswers);

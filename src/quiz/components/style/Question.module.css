@@ -1,12 +1,14 @@
 .QuestionContainer {
   display: flex;
   align-items: flex-start;
+  width: 100%;
 }
 
 .Question {
   cursor: pointer;
   font-weight: 400;
   font-size: 1.25rem;
+  width: 100%;
 }
 
 .disabled {

@@ -40,6 +40,7 @@ const initialModalState = {showModal: false, modalType: null};
 const Landing = () => {
   const [isLoading, setLoading] = useState(false);
   const [quizData, setQuizData] = useState(null);
+  const [quizFullData, setQuizFullData] = useState(null);
   const [modalState, setModalState] = useState(initialModalState);
 
   const handleHideModal = () => setModalState(initialModalState);
@@ -82,7 +83,9 @@ const Landing = () => {
     if (e === 'Testy_Patokhimia') {
       setLoading(true);
       const fileData = Testy_Patokhimia;
-      setQuizData(randomizeArray(fileData));
+      const data = randomizeArray(fileData);
+      setQuizFullData(data);
+      setQuizData(data.slice(0, 20));
     }
     setLoading(false);
   };
@@ -196,6 +199,7 @@ const Landing = () => {
             {!isLoading && (
               <Quiz
                 data={quizData}
+                fullData={quizFullData}
                 setData={setNewQuizData}
                 finishQuiz={quizEndHandler}
                 restartQuiz={quizRestartHandler}
