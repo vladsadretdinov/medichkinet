@@ -15,9 +15,7 @@ prev_line = ""
 
 for line in row:
     if re.match(r'^\d+\. ', line):
-        print(re.match(r'^\d+\. ', line).group(0))
-        count = len(questions) + 1
-        question = str(count) + ". " + line[5:]
+        question = line
     elif re.match(r'^.\) ', line):
         otvet = line[3:]
         options.append(otvet)
