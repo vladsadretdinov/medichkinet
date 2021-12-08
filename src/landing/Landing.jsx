@@ -11,7 +11,7 @@ import IconWrapper from '../components/core/UI/IconWrapper.react';
 import classes from './Landing.module.css';
 import Modal from '../components/core/UI/Modal.react';
 import Code from '../components/core/UI/Code.react';
-import Testy_Patokhimia from "./8989.json";
+import KLD from "./8989.json";
 
 const instructionsText = `[
   {
@@ -80,9 +80,9 @@ const Landing = () => {
     }
   };
   const handleUpload2 = e => {
-    if (e === 'Testy_Patokhimia') {
+    if (e === "KLD") {
       setLoading(true);
-      const fileData = Testy_Patokhimia;
+      const fileData = KLD;
       const data = randomizeArray(fileData);
       setQuizFullData(data);
       setQuizData(data.slice(0, 20));
@@ -163,8 +163,8 @@ const Landing = () => {
                       type="file"
                       value="upload"
                       // onChange={handleUpload}
-                       onClick={() => handleUpload2("Testy_Patokhimia")}
-                      name="Testy_Patokhimia"
+                       onClick={() => handleUpload2("KLD")}
+                      name="KLD"
                     ></Button>
                   </VerticalLayout>
                 ) : (
