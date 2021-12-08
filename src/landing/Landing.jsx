@@ -11,7 +11,7 @@ import IconWrapper from '../components/core/UI/IconWrapper.react';
 import classes from './Landing.module.css';
 import Modal from '../components/core/UI/Modal.react';
 import Code from '../components/core/UI/Code.react';
-import Testy_Patokhimia from "./Testy_Patokhimia.json";
+import Testy_Patokhimia from "./8989.json";
 
 const instructionsText = `[
   {

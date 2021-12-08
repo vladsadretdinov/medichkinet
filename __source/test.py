@@ -1,6 +1,6 @@
 import re
 import json
-file = open("Testy_Patokhimia.txt", 'r', encoding="utf8")
+file = open("8989.txt", 'r', encoding="utf8")
 
 row = file.readlines()
 
@@ -14,7 +14,7 @@ options = []
 prev_line = ""
 
 for line in row:
-    if re.match(r'^test ', line):
+    if re.match(r'^\d+\. ', line):
         count = len(questions) + 1
         question = str(count) + ". " + line[5:]
     elif re.match(r'^.\) ', line):
@@ -35,5 +35,5 @@ for line in row:
 #print(json.dumps(questions, indent=4))
 #print(questions)
 
-with open('Testy_Patokhimia.json', 'w') as outfile:
+with open('8989.json', 'w') as outfile:
     json.dump(questions, outfile)
